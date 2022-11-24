@@ -1,5 +1,6 @@
 import random
 import smtplib
+# import unittest
 from email_validator import validate_email
 
 # smptlib Gmail PORT
@@ -18,7 +19,7 @@ for data in file:
 userEmail = input("Enter you Email id : ")
 
 # Text message to be send
-message = "Otp to login to your account is: "
+message = "Otp to login is "
 
 try:
     # Validating the Email
@@ -34,11 +35,15 @@ def sendEmailtoUser():
     # Quiting the server after sending email
     server.quit();
 
+def generateOtp():
+    otp = random.randrange(1000,10000)
+    return otp
+
 try:
     server = smtplib.SMTP('smtp.gmail.com', PORT)
     server.starttls()
     server.login(myEmail,myPass)
-    otp = random.randrange(100000,1000000)
+    otp = generateOtp()
     
     # sending Email to User
     sendEmailtoUser()
